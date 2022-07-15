@@ -1,0 +1,16 @@
+###libraries
+library(ggplot2)
+library(reshape2)
+
+###upload and melt csv
+data <- read.csv("raw_data_year_analytes.csv")
+d <- melt(data, id.vars="Year")
+
+###make figure
+png('All_Analytes_Year')
+par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
+ggplot(d, aes(Year,value, col=variable))+
++ geom_point()+
++ stat_smooth()+
++ ylim(0, 5)+
++ theme_bw()
