@@ -1,0 +1,17 @@
+library(readODS)
+library(FSA)
+
+setwd("/home/joe/Documents/NSF_Fellowship/Qiita_Shotgun_Total")
+
+mydata <- read_ods("154213_alpha-diversity_ACE_shotgun_WoL_nocontrols.ods")
+
+###look at region by species groups
+kruskal.test(ACE ~ RegionSpecies, data = mydata)
+###pairwise comparisons
+dunnTest(ACE ~ RegionSpecies, data = mydata, method = "bh")
+
+###look at region
+kruskal.test(ACE ~ Region, data = mydata)
+
+###look at Species
+kruskal.test(ACE ~ Species, data = mydata)
